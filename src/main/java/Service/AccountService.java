@@ -19,11 +19,17 @@ public class AccountService {
     }
 
     
-    //ADD AN ACCOUNT TO THE DATABASE
+    /*
+     * ADD AN ACCOUNT TO THE DATABASE
+     * USERNAME MUST NOT BE BLANK, PASSWORD MUST BE AT LEAST 4 CHARACTERS, USERNAME MUST BE UNIQUE(NO DUPLICATES)
+     */
     public Account addAccount(Account account){
+        //returns null if no account was found(good), returns an account if one was found(bad)
         Account accountFromDb = this.accountDAO.getAccountByUsername(account.getUsername());
 
-        if(accountFromDb != null) return null;
+        if(account.getUsername() == "") return null;
+        else if(account.getPassword().length() < 4) return null;
+        else if(accountFromDb != null) return null;
 
         this.accountDAO.insertAccount(account);
         return this.accountDAO.getAccountByUsername(account.getUsername());
