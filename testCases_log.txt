@@ -9,7 +9,9 @@
 [INFO] Copying 1 resource
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ Challenges ---
-[INFO] Nothing to compile - all classes are up to date
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 7 source files to /workspace/RedeemedDeus-pep-project/target/classes
 [INFO] 
 [INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ Challenges ---
 [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
@@ -25,17 +27,13 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running AuthIntegrationTest
-[ERROR] Tests run: 7, Failures: 3, Errors: 4, Skipped: 0, Time elapsed: 8.921 s <<< FAILURE! - in AuthIntegrationTest
-[ERROR] AuthIntegrationTest.postRegisterThenPostIncorrectLoginTest  Time elapsed: 2.691 s  <<< ERROR!
-com.fasterxml.jackson.core.JsonParseException: 
-Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
- at [Source: (String)"sample text"; line: 1, column: 7]
-	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:2418)
-	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:759)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._reportInvalidToken(ReaderBasedJsonParser.java:3032)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleOddValue(ReaderBasedJsonParser.java:2073)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:805)
-	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4784)
+[ERROR] Tests run: 7, Failures: 3, Errors: 4, Skipped: 0, Time elapsed: 8.966 s <<< FAILURE! - in AuthIntegrationTest
+[ERROR] AuthIntegrationTest.postRegisterThenPostIncorrectLoginTest  Time elapsed: 2.778 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.MismatchedInputException: 
+No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4788)
 	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4690)
 	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3652)
 	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3620)
@@ -83,7 +81,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] AuthIntegrationTest.postRegisterShortPasswordTest  Time elapsed: 1.086 s  <<< FAILURE!
+[ERROR] AuthIntegrationTest.postRegisterShortPasswordTest  Time elapsed: 1.031 s  <<< FAILURE!
 java.lang.AssertionError: expected:<400> but was:<200>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -132,7 +130,7 @@ java.lang.AssertionError: expected:<400> but was:<200>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] AuthIntegrationTest.postLoginEmptyTest  Time elapsed: 1.028 s  <<< FAILURE!
+[ERROR] AuthIntegrationTest.postLoginEmptyTest  Time elapsed: 1.034 s  <<< FAILURE!
 java.lang.AssertionError: expected:<401> but was:<200>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -181,16 +179,12 @@ java.lang.AssertionError: expected:<401> but was:<200>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] AuthIntegrationTest.postRegisterDuplicateUsernameTest  Time elapsed: 1.029 s  <<< ERROR!
-com.fasterxml.jackson.core.JsonParseException: 
-Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
- at [Source: (String)"sample text"; line: 1, column: 7]
-	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:2418)
-	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:759)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._reportInvalidToken(ReaderBasedJsonParser.java:3032)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleOddValue(ReaderBasedJsonParser.java:2073)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:805)
-	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4784)
+[ERROR] AuthIntegrationTest.postRegisterDuplicateUsernameTest  Time elapsed: 1.025 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.MismatchedInputException: 
+No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4788)
 	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4690)
 	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3652)
 	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3620)
@@ -238,16 +232,12 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] AuthIntegrationTest.postRegisterTest  Time elapsed: 1.026 s  <<< ERROR!
-com.fasterxml.jackson.core.JsonParseException: 
-Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
- at [Source: (String)"sample text"; line: 1, column: 7]
-	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:2418)
-	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:759)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._reportInvalidToken(ReaderBasedJsonParser.java:3032)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleOddValue(ReaderBasedJsonParser.java:2073)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:805)
-	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4784)
+[ERROR] AuthIntegrationTest.postRegisterTest  Time elapsed: 1.031 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.MismatchedInputException: 
+No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4788)
 	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4690)
 	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3652)
 	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3620)
@@ -294,7 +284,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] AuthIntegrationTest.postRegisterBlankUsernameTest  Time elapsed: 1.027 s  <<< FAILURE!
+[ERROR] AuthIntegrationTest.postRegisterBlankUsernameTest  Time elapsed: 1.03 s  <<< FAILURE!
 java.lang.AssertionError: expected:<400> but was:<200>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -343,16 +333,12 @@ java.lang.AssertionError: expected:<400> but was:<200>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] AuthIntegrationTest.postRegisterThenPostLoginTest  Time elapsed: 1.023 s  <<< ERROR!
-com.fasterxml.jackson.core.JsonParseException: 
-Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
- at [Source: (String)"sample text"; line: 1, column: 7]
-	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:2418)
-	at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:759)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._reportInvalidToken(ReaderBasedJsonParser.java:3032)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleOddValue(ReaderBasedJsonParser.java:2073)
-	at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:805)
-	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4784)
+[ERROR] AuthIntegrationTest.postRegisterThenPostLoginTest  Time elapsed: 1.028 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.MismatchedInputException: 
+No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4788)
 	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4690)
 	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3652)
 	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3620)
@@ -401,8 +387,8 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
 [INFO] Running MessagingIntegrationTest
-[ERROR] Tests run: 20, Failures: 5, Errors: 14, Skipped: 0, Time elapsed: 20.495 s <<< FAILURE! - in MessagingIntegrationTest
-[ERROR] MessagingIntegrationTest.postAccountAndMessageThenGetMessageTest  Time elapsed: 1.003 s  <<< ERROR!
+[ERROR] Tests run: 20, Failures: 5, Errors: 14, Skipped: 0, Time elapsed: 20.436 s <<< FAILURE! - in MessagingIntegrationTest
+[ERROR] MessagingIntegrationTest.postAccountAndMessageThenGetMessageTest  Time elapsed: 1.001 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -459,7 +445,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.deleteMessageNonExistentMessageTest  Time elapsed: 1.023 s  <<< FAILURE!
+[ERROR] MessagingIntegrationTest.deleteMessageNonExistentMessageTest  Time elapsed: 1.022 s  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
@@ -507,7 +493,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postAccountAndBlankMessage  Time elapsed: 1.027 s  <<< FAILURE!
+[ERROR] MessagingIntegrationTest.postAccountAndBlankMessage  Time elapsed: 1.025 s  <<< FAILURE!
 java.lang.AssertionError: expected:<400> but was:<200>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -556,7 +542,7 @@ java.lang.AssertionError: expected:<400> but was:<200>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.patchMessageTest  Time elapsed: 1.026 s  <<< ERROR!
+[ERROR] MessagingIntegrationTest.patchMessageTest  Time elapsed: 1.027 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -613,7 +599,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postManyUsersAndMessagesThenGetAllMessages  Time elapsed: 1.026 s  <<< ERROR!
+[ERROR] MessagingIntegrationTest.postManyUsersAndMessagesThenGetAllMessages  Time elapsed: 1.027 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -671,7 +657,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postManyAccountsAndMessagesThenGetMessagesByAccountIdTest  Time elapsed: 1.029 s  <<< ERROR!
+[ERROR] MessagingIntegrationTest.postManyAccountsAndMessagesThenGetMessagesByAccountIdTest  Time elapsed: 1.023 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -729,7 +715,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.deleteMessageTest  Time elapsed: 1.048 s  <<< ERROR!
+[ERROR] MessagingIntegrationTest.deleteMessageTest  Time elapsed: 1.024 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -786,7 +772,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postMessageNonExistentAccountTest  Time elapsed: 1.023 s  <<< FAILURE!
+[ERROR] MessagingIntegrationTest.postMessageNonExistentAccountTest  Time elapsed: 1.019 s  <<< FAILURE!
 java.lang.AssertionError: expected:<400> but was:<200>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -835,7 +821,7 @@ java.lang.AssertionError: expected:<400> but was:<200>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.getMessageAfterPatchTest  Time elapsed: 1.029 s  <<< ERROR!
+[ERROR] MessagingIntegrationTest.getMessageAfterPatchTest  Time elapsed: 1.023 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -893,7 +879,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postAccountAndTooLongMessage  Time elapsed: 1.024 s  <<< FAILURE!
+[ERROR] MessagingIntegrationTest.postAccountAndTooLongMessage  Time elapsed: 1.022 s  <<< FAILURE!
 java.lang.AssertionError: expected:<400> but was:<200>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -942,7 +928,7 @@ java.lang.AssertionError: expected:<400> but was:<200>
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.patchMessageTooLongTest  Time elapsed: 1.026 s  <<< ERROR!
+[ERROR] MessagingIntegrationTest.patchMessageTooLongTest  Time elapsed: 1.024 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -999,7 +985,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.getMessagesByAccountIdEmpty  Time elapsed: 1.023 s  <<< ERROR!
+[ERROR] MessagingIntegrationTest.getMessagesByAccountIdEmpty  Time elapsed: 1.02 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -1055,7 +1041,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.deletedMessageShouldNotExistTest  Time elapsed: 1.028 s  <<< ERROR!
+[ERROR] MessagingIntegrationTest.deletedMessageShouldNotExistTest  Time elapsed: 1.026 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -1113,7 +1099,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.patchMessageBlankTest  Time elapsed: 1.025 s  <<< ERROR!
+[ERROR] MessagingIntegrationTest.patchMessageBlankTest  Time elapsed: 1.022 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -1332,7 +1318,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postAccountAndMessageTest  Time elapsed: 1.023 s  <<< ERROR!
+[ERROR] MessagingIntegrationTest.postAccountAndMessageTest  Time elapsed: 1.021 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -1388,7 +1374,7 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:595)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:581)
 
-[ERROR] MessagingIntegrationTest.postAccountAndMessageAndGetAllMessagesTest  Time elapsed: 1.026 s  <<< ERROR!
+[ERROR] MessagingIntegrationTest.postAccountAndMessageAndGetAllMessagesTest  Time elapsed: 1.024 s  <<< ERROR!
 com.fasterxml.jackson.core.JsonParseException: 
 Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
@@ -1458,14 +1444,14 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 [ERROR]   MessagingIntegrationTest.postAccountAndTooLongMessage:173 expected:<400> but was:<200>
 [ERROR]   MessagingIntegrationTest.postMessageNonExistentAccountTest:95 expected:<400> but was:<200>
 [ERROR] Errors: 
-[ERROR]   AuthIntegrationTest.postRegisterDuplicateUsernameTest:129->postRegisterTest:74 » JsonParse Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
- at [Source: (String)"sample text"; line: 1, column: 7]
-[ERROR]   AuthIntegrationTest.postRegisterTest:74 » JsonParse Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
- at [Source: (String)"sample text"; line: 1, column: 7]
-[ERROR]   AuthIntegrationTest.postRegisterThenPostIncorrectLoginTest:196->postRegisterTest:74 » JsonParse Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
- at [Source: (String)"sample text"; line: 1, column: 7]
-[ERROR]   AuthIntegrationTest.postRegisterThenPostLoginTest:171->postRegisterTest:74 » JsonParse Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
- at [Source: (String)"sample text"; line: 1, column: 7]
+[ERROR]   AuthIntegrationTest.postRegisterDuplicateUsernameTest:129->postRegisterTest:74 » MismatchedInput No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+[ERROR]   AuthIntegrationTest.postRegisterTest:74 » MismatchedInput No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+[ERROR]   AuthIntegrationTest.postRegisterThenPostIncorrectLoginTest:196->postRegisterTest:74 » MismatchedInput No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+[ERROR]   AuthIntegrationTest.postRegisterThenPostLoginTest:171->postRegisterTest:74 » MismatchedInput No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
 [ERROR]   MessagingIntegrationTest.deleteMessageTest:404->postAccountAndMessageTest:143 » JsonParse Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
  at [Source: (String)"sample text"; line: 1, column: 7]
 [ERROR]   MessagingIntegrationTest.deletedMessageShouldNotExistTest:426->deleteMessageTest:404->postAccountAndMessageTest:143 » JsonParse Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
@@ -1500,8 +1486,8 @@ Unrecognized token 'sample': was expecting (JSON String, Number, Array, Object o
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  36.137 s
-[INFO] Finished at: 2023-02-04T18:54:35Z
+[INFO] Total time:  38.278 s
+[INFO] Finished at: 2023-02-05T05:01:02Z
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.0.0-M7:test (default-test) on project Challenges: There are test failures.
 [ERROR] 
