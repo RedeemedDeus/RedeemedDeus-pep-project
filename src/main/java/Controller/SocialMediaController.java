@@ -2,6 +2,8 @@ package Controller;
 
 import Model.Account;
 import Model.Message;
+import Service.AccountService;
+import Service.MessageService;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -17,6 +19,15 @@ import java.util.List;
  * refer to prior mini-project labs and lecture materials for guidance on how a controller may be built.
  */
 public class SocialMediaController {
+
+    AccountService accountService;
+    MessageService messageService;
+
+    public SocialMediaController(){
+        this.accountService = new AccountService();
+        this.messageService = new MessageService();
+    }
+
     /**
      * In order for the test cases to work, you will need to write the endpoints in the startAPI() method, as the test
      * suite must receive a Javalin object from this method.
@@ -37,6 +48,33 @@ public class SocialMediaController {
         return app;
     }
 
+
+
+    /**
+     * Handler to register a new user (post a new registration)
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     * @throws JsonProcessingException will be thrown if there is an issue converting JSON into an object.
+     */
+    private void postRegisterHandler(Context context) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        Account account = mapper.readValue(context.body(), Account.class);
+        Account addedAccount = accountService.addAccount(account);
+
+        if(addedAccount==null){
+            context.status(400);
+        }else{
+            context.json(mapper.writeValueAsString(addedAccount));
+        }
+    }
+
+
+
+
+
+
+
+
+    
     /**
      * This is an example handler for an example endpoint.
      * @param context The Javalin Context object manages information about both the HTTP request and response.
@@ -44,26 +82,5 @@ public class SocialMediaController {
     private void exampleHandler(Context context) {
         context.json("sample text");
     }
-
-    /**
-     * Handler to register a new user (post a new registration)
-     * @param context The Javalin Context object manages information about both the HTTP request and response.
-     * @throws JsonProcessingException will be thrown if there is an issue converting JSON into an object.
-     */
-    private void postRegisterHandler(Context ctx) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        // Author author = mapper.readValue(ctx.body(), Author.class);
-        // Author addedAuthor = authorService.addAuthor(author);
-
-        // if(addedAuthor!=null){
-        //     ctx.json(mapper.writeValueAsString(addedAuthor));
-        // }else{
-        //     ctx.status(400);
-        // }
-    }
-
-
-
-
 
 }

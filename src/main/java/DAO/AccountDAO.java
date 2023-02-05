@@ -36,8 +36,39 @@ public class AccountDAO {
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
+
         return null;
     }
+
     
-    
+    /*
+     * CHECKS FOR A SPECIFIC ACCOUNT BY ITS USERNAME
+     * PARAM: THE TARGET USERNAME
+     * RETURN: THE ACCOUNT MATCHING THE USERNAME IF FOUND, NULL OTHERWISE
+     */
+    public Account getAccountByUsername(String username){
+        Connection connection = ConnectionUtil.getConnection();
+        try {
+            //Write SQL logic here
+            String sql = "SELECT * FROM account WHERE username = ?;";
+            
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            //write preparedStatement
+            preparedStatement.setString(1, username);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while(rs.next()){
+                Account account = new Account(rs.getInt("account_id"), rs.getString("username"),
+                        rs.getString("password"));
+                return account;
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
 }
