@@ -35,5 +35,13 @@ public class AccountService {
         return this.accountDAO.getAccountByUsername(account.getUsername());
     }
 
+    public Account login(String username, String password){
+        Account loginaccount = this.accountDAO.getLoginAccount(username, password);
+
+        if(loginaccount == null) return null;
+        else return loginaccount;
+
+    }
+
     
 }

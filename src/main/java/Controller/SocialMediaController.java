@@ -36,7 +36,7 @@ public class SocialMediaController {
     public Javalin startAPI() {
         Javalin app = Javalin.create();
         app.post("/register", this::postRegisterHandler);
-        app.post("/login", this::exampleHandler);
+        app.post("/login", this::postLoginHandler);
         app.post("/messages", this::exampleHandler);
         app.get("/messages", this::exampleHandler);
         app.get("/messages/{message_id}", this::exampleHandler);
@@ -67,7 +67,22 @@ public class SocialMediaController {
         }
     }
 
+    /**
+     * Handler to login a returning user(post a login request)
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     * @throws JsonProcessingException will be thrown if there is an issue converting JSON into an object.
+     */
+    private void postLoginHandler(Context context)throws JsonProcessingException{
+        ObjectMapper mapper = new ObjectMapper();
+        Account account = mapper.readValue(context.body(), Account.class);
+        Account postedLogin = accountService.login(account.getUsername(), account.getPassword());
 
+        if(postedLogin==null){
+            context.status(401); //Login was not successful, therefore status code 401(Unauthorized)
+        }else{
+            context.json(mapper.writeValueAsString(postedLogin));
+        } 
+    }
 
 
 

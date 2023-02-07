@@ -71,4 +71,36 @@ public class AccountDAO {
         return null;
     }
 
+
+    /*
+     * VALIDATES A USER LOGIN USING A PASSWORD AND USERNAME PROVIDED
+     * PARAM: USERNAME and PASSWORD of the person trying to login
+     * RETURN: ACCOUNT of the person trying to login, NULL if the action was unssuccessful
+     */
+    public Account getLoginAccount(String username, String password){
+        Connection connection = ConnectionUtil.getConnection();
+        try {
+            //Write SQL logic here
+            String sql = "SELECT * FROM account WHERE username = ? AND password = ?;";
+            
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            //write preparedStatement
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2,password);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while(rs.next()){
+                Account account = new Account(rs.getInt("account_id"), rs.getString("username"),
+                        rs.getString("password"));
+                return account;
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
 }
