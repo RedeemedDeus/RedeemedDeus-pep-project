@@ -35,10 +35,10 @@ public class SocialMediaController {
      */
     public Javalin startAPI() {
         Javalin app = Javalin.create();
-        app.post("/register", this::postRegisterHandler);
-        app.post("/login", this::postLoginHandler);
-        app.post("/messages", this::exampleHandler);
-        app.get("/messages", this::exampleHandler);
+        app.post("/register", this::postRegisterHandler); //DONE
+        app.post("/login", this::postLoginHandler);       //DONE
+        app.post("/messages", this::postMessageHandler);  //DONE
+        app.get("/messages", this::getAllMessagesHandler);//DONE
         app.get("/messages/{message_id}", this::exampleHandler);
         app.delete("/messages/{message_id}", this::exampleHandler);
         app.patch("/messages/{message_id}", this::exampleHandler);
@@ -83,6 +83,36 @@ public class SocialMediaController {
             context.json(mapper.writeValueAsString(postedLogin));
         } 
     }
+
+    /**
+     * Handler to post a new message(post a message)
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     * @throws JsonProcessingException will be thrown if there is an issue converting JSON into an object.
+     */
+    private void postMessageHandler(Context context) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        Message message = mapper.readValue(context.body(), Message.class);
+        Message addedMessage = messageService.addMessage(message);
+        if(addedMessage!=null){
+            context.json(mapper.writeValueAsString(addedMessage));
+        }else{
+            context.status(400);
+        }
+    }
+
+    /**
+     * Handler to get all messages(get messages)
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     */
+    private void getAllMessagesHandler(Context context) {
+        List<Message> messages = messageService.getAllMessages();
+        context.json(messages);
+    }
+
+    
+
+
+
 
 
 

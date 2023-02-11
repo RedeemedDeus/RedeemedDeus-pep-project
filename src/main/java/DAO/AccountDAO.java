@@ -71,6 +71,36 @@ public class AccountDAO {
         return null;
     }
 
+    /*
+     * CHECKS FOR A SPECIFIC ACCOUNT BY ITS account_id
+     * PARAM: THE TARGET ACCOUNT ID
+     * RETURN: THE ACCOUNT MATCHING THE ACCOUNT ID IF FOUND, NULL OTHERWISE
+     */
+    public Account getAccountById(int account_id){
+        Connection connection = ConnectionUtil.getConnection();
+        try {
+            //Write SQL logic here
+            String sql = "SELECT * FROM account WHERE account_id = ?;";
+            
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            //write preparedStatement
+            preparedStatement.setInt(1, account_id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while(rs.next()){
+                Account account = new Account(rs.getInt("account_id"), rs.getString("username"),
+                        rs.getString("password"));
+                return account;
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
 
     /*
      * VALIDATES A USER LOGIN USING A PASSWORD AND USERNAME PROVIDED
