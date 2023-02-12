@@ -40,7 +40,7 @@ public class SocialMediaController {
         app.post("/messages", this::postMessageHandler);                   //DONE
         app.get("/messages", this::getAllMessagesHandler);                 //DONE
         app.get("/messages/{message_id}", this::getMessageByIdHandler);    //DONE
-        app.delete("/messages/{message_id}", this::deleteMessageHandler);
+        app.delete("/messages/{message_id}", this::deleteMessageHandler);  //DONE
         app.patch("/messages/{message_id}", this::exampleHandler);
         app.get("/accounts/{account_id}/messages", this::exampleHandler);
         
@@ -114,7 +114,12 @@ public class SocialMediaController {
      * @param context The Javalin Context object manages information about both the HTTP request and response.
      */
     private void getMessageByIdHandler(Context context) {
-        context.json(messageService.getMessageFromId(context.pathParam("message_id")));
+        Message message = messageService.getMessageFromId(context.pathParam("message_id"));
+
+        if(message != null){
+            context.json(message);
+        }
+        
     }
 
     /**
@@ -127,9 +132,6 @@ public class SocialMediaController {
         
         if(deletedMessage != null){
             context.json(deletedMessage);
-        }
-        else{
-            context.body();
         }
         
     }
