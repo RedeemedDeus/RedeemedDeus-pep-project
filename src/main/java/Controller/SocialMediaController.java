@@ -35,12 +35,12 @@ public class SocialMediaController {
      */
     public Javalin startAPI() {
         Javalin app = Javalin.create();
-        app.post("/register", this::postRegisterHandler); //DONE
-        app.post("/login", this::postLoginHandler);       //DONE
-        app.post("/messages", this::postMessageHandler);  //DONE
-        app.get("/messages", this::getAllMessagesHandler);//DONE
-        app.get("/messages/{message_id}", this::exampleHandler);
-        app.delete("/messages/{message_id}", this::exampleHandler);
+        app.post("/register", this::postRegisterHandler);                  //DONE
+        app.post("/login", this::postLoginHandler);                        //DONE
+        app.post("/messages", this::postMessageHandler);                   //DONE
+        app.get("/messages", this::getAllMessagesHandler);                 //DONE
+        app.get("/messages/{message_id}", this::getMessageByIdHandler);    //DONE
+        app.delete("/messages/{message_id}", this::deleteMessageHandler);
         app.patch("/messages/{message_id}", this::exampleHandler);
         app.get("/accounts/{account_id}/messages", this::exampleHandler);
         
@@ -107,6 +107,31 @@ public class SocialMediaController {
     private void getAllMessagesHandler(Context context) {
         List<Message> messages = messageService.getAllMessages();
         context.json(messages);
+    }
+
+    /*
+     * Handler to get a message by it's id
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     */
+    private void getMessageByIdHandler(Context context) {
+        context.json(messageService.getMessageFromId(context.pathParam("message_id")));
+    }
+
+    /**
+     * Handler to delete a message
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     * @throws JsonProcessingException will be thrown if there is an issue converting JSON into an object.
+     */
+    private void deleteMessageHandler(Context context) throws JsonProcessingException {
+        Message deletedMessage = messageService.deleteMessageFromId(context.pathParam("message_id"));
+        
+        if(deletedMessage != null){
+            context.json(deletedMessage);
+        }
+        else{
+            context.body();
+        }
+        
     }
 
     

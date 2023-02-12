@@ -45,5 +45,28 @@ public class MessageService {
         if(allMessages == null) return null;
         return allMessages;
     }
+
+    /*
+     * GET A MESSAGE BY ITS ID
+     */
+    public Message getMessageFromId(String message_id){
+        Message messageFromDb = this.messageDAO.getMessageFromId(Integer.parseInt(message_id));
+
+        if(messageFromDb == null) return null;
+        return messageFromDb;
+    }
+
+
+    /*
+     * DELETE A MESSAGE BY ITS ID
+     */
+    public Message deleteMessageFromId(String message_id){
+        Message messageFromDb = this.messageDAO.getMessageFromId(Integer.parseInt(message_id));
+
+        if(messageFromDb == null) return null;
+
+        this.messageDAO.deleteMessageFromId(Integer.parseInt(message_id));
+        return messageFromDb;
+    }
     
 }
