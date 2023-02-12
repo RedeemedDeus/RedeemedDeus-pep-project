@@ -41,8 +41,8 @@ public class SocialMediaController {
         app.get("/messages", this::getAllMessagesHandler);                 //DONE
         app.get("/messages/{message_id}", this::getMessageByIdHandler);    //DONE
         app.delete("/messages/{message_id}", this::deleteMessageHandler);  //DONE
-        app.patch("/messages/{message_id}", this::exampleHandler);
-        app.get("/accounts/{account_id}/messages", this::exampleHandler);
+        app.patch("/messages/{message_id}", this::patchMessageHandler);    //DONE
+        app.get("/accounts/{account_id}/messages", this::getAllMessagesFromAccountIdHandler);
         
 
         return app;
@@ -136,7 +136,39 @@ public class SocialMediaController {
         
     }
 
+
+    /*
+     * HANDLER TO PATCH A MESSAGE(UPDATES A MESSAGE_TEXT BY ITS MESSAGE_ID)
+     */
+    private void patchMessageHandler(Context context) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        Message message = mapper.readValue(context.body(), Message.class);
+
+        int message_id = Integer.parseInt(context.pathParam("message_id"));
+
+        Message updatedMessage = messageService.updateMessage(message_id, message.getMessage_text());
+        System.out.println(updatedMessage);
+
+        if(updatedMessage == null){
+            context.status(400);
+        }else{
+            context.json(mapper.writeValueAsString(updatedMessage));
+        }
+
+    }
+
     
+        /*
+     * Handler to get a message by it's id
+     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     */
+    private void getAllMessagesFromAccountIdHandler(Context context) {
+        List<Message> allmessages = messageService.getAllMessagesForAccountId(Integer.parseInt(context.pathParam("account_id")));
+
+        if(allmessages != null){
+            context.json(allmessages);
+        }
+    }
 
 
 

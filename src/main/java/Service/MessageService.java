@@ -58,7 +58,7 @@ public class MessageService {
 
 
     /*
-     * DELETE A MESSAGE BY ITS ID
+     * DELETE A MESSAGE BY ITS MESSAGE_ID
      */
     public Message deleteMessageFromId(String message_id){
         Message messageFromDb = this.messageDAO.getMessageFromId(Integer.parseInt(message_id));
@@ -67,6 +67,30 @@ public class MessageService {
 
         this.messageDAO.deleteMessageFromId(Integer.parseInt(message_id));
         return messageFromDb;
+    }
+
+
+    /*
+     * UPDATE MESSAGE BY IT'S MESSAGE_ID
+     */
+    public Message updateMessage(int message_id, String message_text){
+        Message messageFromDb = this.messageDAO.getMessageFromId(message_id);
+
+        if(message_text == "" || message_text.length() > 255) return null;
+        if(messageFromDb == null) return null;
+
+        this.messageDAO.updateMessage(message_id, message_text);
+        messageFromDb = this.messageDAO.getMessageFromId(message_id);
+        return messageFromDb;
+    }
+
+
+    /*
+     * GET ALL MESSAGES FOR A PARTICULAR USER ID
+     */
+    public List<Message> getAllMessagesForAccountId(int account_id){
+        List<Message> allmessages = this.messageDAO.getAllMessagesForAccountId(account_id);
+        return allmessages;
     }
     
 }
